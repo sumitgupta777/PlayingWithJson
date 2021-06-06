@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocTask1", "PocTask1\PocTask1.csproj", "{49C50D71-231D-4DF3-A8A3-DCE83462C305}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService", "WebService\WebService.csproj", "{8F6388FB-57EA-4570-A215-27687FB29FC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49C50D71-231D-4DF3-A8A3-DCE83462C305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C50D71-231D-4DF3-A8A3-DCE83462C305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C50D71-231D-4DF3-A8A3-DCE83462C305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C50D71-231D-4DF3-A8A3-DCE83462C305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F6388FB-57EA-4570-A215-27687FB29FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F6388FB-57EA-4570-A215-27687FB29FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F6388FB-57EA-4570-A215-27687FB29FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F6388FB-57EA-4570-A215-27687FB29FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C6E55AE-D5CB-46DE-82B4-FB8E84EB2A81}
+	EndGlobalSection
+EndGlobal

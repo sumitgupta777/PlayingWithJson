@@ -1,0 +1,65 @@
+﻿@model PocTask1.Models.Configuration
+
+@{
+    ViewData["Title"] = "AddJsonData";
+}
+
+<h1>AddJsonData</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="AddJsonData">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group col-4">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group col-4">
+                <label asp-for="DisplayName" class="control-label"></label>
+                <input asp-for="DisplayName" class="form-control" />
+                <span asp-validation-for="DisplayName" class="text-danger"></span>
+            </div>
+        @*<div class="form-group col-4" id="sumit">
+            kkk
+        </div>*@
+            <br />
+            <h4>Services Input :</h4>
+            <br />
+            <button onclick="addService()" type="button">Add Service</button>
+            <table id="AddService" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Services[0].Description)</th>
+                        <th>@Html.DisplayNameFor(model => model.Services[0].Endpoint)</th>
+                        <th>@Html.DisplayNameFor(model => model.Services[0].Template)</th>
+                        <th>@Html.DisplayNameFor(model => model.Services[0].Time)</th>
+                    </tr>
+                </thead>
+                <tbody id="AddServiceTable">
+                </tbody>
+
+            </table>
+           
+            <br />
+           
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/js/demo.js"></script> 
+
+}

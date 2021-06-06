@@ -1,0 +1,193 @@
+﻿@model PocTask1.Models.ConfigureList
+
+@{
+    ViewData["Title"] = "EditJsonEntry";
+    var newk = 0;
+    var newj = 0;
+
+
+}
+
+<h1>EditJsonEntry</h1>
+
+<h4>ConfigureList</h4>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="EditJsonEntry" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+            @for (var j = 0; j < Model.applications.Count; j++)
+            {
+                <div class="card p-2" style="border:1px solid #008cba; border-radius:5px;">
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="applications[j].Name" class="control-label"></label>
+                        </div>
+                        <div class="col-md-9 px-5">
+                            <input asp-for="applications[j].Name" class="form-control" />
+                            <span asp-validation-for="applications[j].Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <div class="col-md-2">
+                            <label asp-for="applications[j].DisplayName" class="control-label"></label>
+                        </div>
+                        <div class="col-md-9 px-5">
+                            <input asp-for="applications[j].DisplayName" class="form-control" />
+                            <span asp-validation-for="applications[j].DisplayName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <p><b>Servies for @Model.applications[j].Name</b></p>
+                    <br />
+
+                    @if (Model.applications[j].Services != null)
+                    {
+                        <div id="@j">
+                            @for (var k = 0; k < Model.applications[j].Services.ToList().Count(); k++)
+                            {
+                                @if (k >= 0)
+                                {
+                                    newk = Model.applications[j].Services.Count - 1;
+                                    newj = j;
+
+                                }
+                                <div id="@j@k">
+                                    <p><b>Service @(k + 1)</b></p>
+                                    <div class="form-group row ">
+                                        <div class="col-md-2">
+                                            <label asp-for="applications[j].Services[k].Description" class="control-label"></label>
+                                        </div>
+                                        <div class="col-md-9 px-5">
+                                            <input asp-for="applications[j].Services[k].Description" class="form-control" />
+                                            <span asp-validation-for="applications[j].Services[k].Description" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                        <div class="col-md-2">
+                                            <label asp-for="applications[j].Services[k].Endpoint" class="control-label"></label>
+                                        </div>
+                                        <div class="col-md-9 px-5">
+                                            <input asp-for="applications[j].Services[k].Endpoint" class="form-control" />
+                                            <span asp-validation-for="applications[j].Services[k].Endpoint" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                        <div class="col-md-2">
+                                            <label asp-for="applications[j].Services[k].Template" class="control-label"></label>
+                                        </div>
+                                        <div class="col-md-9 px-5">
+                                            <input asp-for="applications[j].Services[k].Template" class="form-control" />
+                                            <span asp-validation-for="applications[j].Services[k].Template" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                        <div class="col-md-2">
+                                            <label asp-for="applications[j].Services[k].Time" class="control-label"></label>
+                                        </div>
+                                        <div class="col-md-9 px-5">
+                                            <input asp-for="applications[j].Services[k].Time" class="form-control" />
+                                            <span asp-validation-for="applications[j].Services[k].Time" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div id="kes">
+
+                                    </div>
+                                    <button class="" onclick="addDelete('@j@k')" type="button">Delete Service</button>
+                                    <br />
+                                    <br />
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    { <div></div>}
+
+                    <button class="float-left mx-16" id="keshav" onclick="return addServiceInEdit(@newj)" type="button">Add Service</button>
+
+                    <hr />
+                    <br />
+
+                </div>
+                <br />
+            }
+
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+
+
+    function addDelete(id) {
+
+        console.log(id);
+        $("#" + id).html("");
+    }
+
+    var newk = @newk;
+    function addServiceInEdit(newj) {
+
+        ++newk;
+        var sam = newk + 1;
+        var d = document.getElementById(newj);
+
+        d.innerHTML += `<div id="${newj}${newk}"><p><b>Service ${sam}</b></p>
+                    <div class="form-group row ">
+                        <div class="col-md-2">
+                            Description
+                        </div>
+                        <div class="col-md-9 px-5">
+                            <input input type="text" name="applications[${newj}].Services[${newk}].Description" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <div class="col-md-2">
+                             Endpoint
+                        </div>
+                        <div class="col-md-9 px-5">
+                            <input input type="text" name="applications[${newj}].Services[${newk}].Endpoint" class="form-control" /><span asp-validation-for="applications[@newj].Services[${newk}].Endpoint" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <div class="col-md-2">
+                            Template
+                        </div>
+                        <div class="col-md-9 px-5">
+                            <input input type="text" name="applications[${newj}].Services[${newk}].Template" class="form-control" />
+
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <div class="col-md-2">
+                             Time
+                        </div>
+                        <div class="col-md-9 px-5">
+                            <input input type="text" name="applications[${newj}].Services[${newk}].Time" class="form-control" />
+
+                        </div>
+                    </div>
+
+                    <button class="" onclick="addDelete('${newj}${newk}')" type="button">Delete Service</button>
+                    <br/>
+                     </div>`;
+
+    }
+    </script>
+}

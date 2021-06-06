@@ -1,0 +1,94 @@
+﻿@model PocTask1.Models.ConfigureList
+
+@{
+    ViewData["Title"] = "Test";
+}
+
+<h1>Json data</h1>
+<hr />
+<br />
+<p>
+    <a asp-controller="Home" asp-action="AddJsonData" class="btn btn-primary">Create New</a>
+</p>
+<br />
+
+
+@foreach (var item in Model.applications)
+{
+<div class="card px-3" style="border:1px solid #008cba; border-radius:5px;">
+
+    <div data-toggle="collapse" data-target="#@item.Name" class="row" style="color:black;background-color:darkgrey">
+        <div>
+            <p class="pl-2">  <b style="font-size:1.4em"> Application Name : </b></p>
+        </div>
+        <div>
+            <p><b style="font-size:1.4em">@Html.DisplayFor(modelItem => item.Name)</b> </p>
+        </div>
+
+    </div>
+    <div id="@item.Name" class="collapse">
+        @*<div class="row">
+            <div>
+                <p class="pl-2"> <b>@Html.DisplayNameFor(modelItem => item.DisplayName) : </b></p>
+            </div>
+            <div>
+                @Html.DisplayFor(modelItem => item.DisplayName)
+            </div>
+        </div>*@
+
+        @if (item.Services != null)
+        {
+            @foreach (var itm in item.Services)
+            {
+                <div>
+                    <p style="font-size:1.2em;"><span>Endpoint - @Html.DisplayFor(modelItem => itm.Endpoint)</span> </p>
+                    <br />
+
+                    @*<p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Description : @Html.DisplayFor(modelItem => itm.Description)
+                    </p>*@
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width:50%">@Html.DisplayNameFor(modelItem => itm.Template)</td>
+                                <td style="width:50%">@Html.DisplayFor(modelItem => itm.Template)</td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">@Html.DisplayNameFor(modelItem => itm.Time)</td>
+                                <td style="width:50%">@Html.DisplayFor(modelItem => itm.Time)</td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">@Html.DisplayNameFor(modelItem => itm.Description)</td>
+                                <td style="width:50%">@Html.DisplayFor(modelItem => itm.Description)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr />
+                </div>
+            }
+        }
+        else { <h6>No Services</h6> }
+
+
+        <a asp-action="EditJsonEntry" asp-route-id="">Edit</a>
+
+        <br />
+        <hr />
+    </div>
+    
+
+</div>
+    <br />
+    <br />
+
+}
+
+
+
